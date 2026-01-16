@@ -17,8 +17,8 @@ type User struct {
 	Phone     *string        `gorm:"size:20" json:"phone,omitempty"`             // 手机号
 	Avatar    *string        `gorm:"size:500" json:"avatar,omitempty"`           // 头像
 	Status    int            `gorm:"default:1" json:"status"`                    // 状态：0=禁用，1=启用
-	CreatedAt time.Time      `json:"createdAt"`
-	UpdatedAt time.Time      `json:"updatedAt"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
 	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`
 
 	// 兼容字段（auth-app使用，数据库表中可能不存在）
@@ -65,14 +65,14 @@ func (u *User) GetPasswordHash() string {
 // UserLoginLog 用户登录日志
 type UserLoginLog struct {
 	ID        uint      `gorm:"primarykey" json:"id"`
-	UserID    uint      `gorm:"not null;index" json:"userId"`
+	UserID    uint      `gorm:"not null;index" json:"user_id"`
 	Username  string    `gorm:"size:50" json:"username"`
 	IP        string    `gorm:"size:50;not null" json:"ip"`
-	UserAgent string    `gorm:"size:500" json:"userAgent"`
-	DeviceID  string    `gorm:"size:100" json:"deviceId"`
+	UserAgent string    `gorm:"size:500" json:"user_agent"`
+	DeviceID  string    `gorm:"size:100" json:"device_id"`
 	City      string    `gorm:"size:100" json:"city"`
 	Country   string    `gorm:"size:100" json:"country"`
-	CreatedAt time.Time `json:"createdAt"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 // TableName 指定表名
